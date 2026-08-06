@@ -17,21 +17,21 @@
   "keywords": [],
   "author": "Philipp Opheys",
   "license": "SEE LICENSE IN LICENSE",
-  "packageManager": "pnpm@11.5.0+sha512.dbfcc4f81cf48597afd4bc391ffdf12c11f1a9fb83a395bfa6b0a2d9cc2fd8ffebafdb1ccbd529632153f793904c2615b7f09fe1a345473fd1c35845172a8eb1",
+  "packageManager": "pnpm@11.20.0+sha512.9a6f330a95b66446ea088faf1521405a8a01f07fde7124cc9958dfed52d4bb436737e65b08f85f37b46fcba375092558ac51262b816844b22f63406ed166bfee",
   "dependencies": {
-    "@clack/prompts": "^1.4.0",
+    "@clack/prompts": "^1.7.0",
     "commander": "^14.0.3",
     "cross-spawn": "^7.0.6",
-    "ignore": "^7.0.5",
+    "ignore": "^7.0.6",
     "picocolors": "^1.1.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.15",
+    "@biomejs/biome": "2.5.6",
     "@types/cross-spawn": "^6.0.6",
-    "@types/node": "^25.9.1",
-    "@yao-pkg/pkg": "^6.19.0",
-    "esbuild": "^0.28.0",
-    "tsc-alias": "^1.8.17",
+    "@types/node": "^25.9.5",
+    "@yao-pkg/pkg": "^6.21.0",
+    "esbuild": "^0.28.1",
+    "tsc-alias": "^1.9.1",
     "typescript": "^5.9.3"
   }
 }

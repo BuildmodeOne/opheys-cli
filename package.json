@@ -1,6 +1,6 @@
 {
   "name": "oph",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Personal CLI for everyday dev chores: bump pnpm/bun deps, self-update, and project housekeeping.",
   "main": "dist/index.js",
   "scripts": {

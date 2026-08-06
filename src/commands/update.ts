@@ -299,14 +299,22 @@ export function loadCommands(program: Command) {
         )
       }
 
-      await execAsync(
+      const auditPassed = await execAsync(
         pm,
         ['audit'],
         'Auditing for known vulnerabilities',
-        'Vulnerability audit found issues - review the output above',
+        'Vulnerability audit found issues - review the report below',
         'Vulnerability audit passed'
       )
 
-      outro(color.green('Project dependencies updated successfully!'))
+      if (auditPassed) {
+        outro(color.green('Project dependencies updated successfully!'))
+      } else {
+        outro(
+          color.yellow(
+            'Project dependencies updated - vulnerabilities need attention'
+          )
+        )
+      }
     })
 }

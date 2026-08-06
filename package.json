@@ -1,7 +1,7 @@
 {
   "name": "oph",
   "version": "2.0.5",
-  "description": "",
+  "description": "Personal CLI for everyday dev chores: bump pnpm/bun deps, self-update, and project housekeeping.",
   "main": "dist/index.js",
   "scripts": {
     "prebuild": "node scripts/gen-version.js",

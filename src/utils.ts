@@ -1,7 +1,19 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-import { spinner } from '@clack/prompts'
+import { log, spinner } from '@clack/prompts'
 import crossSpawn from 'cross-spawn'
+
+class CommandError extends Error {
+  constructor(
+    message: string,
+    readonly exitCode: number | null,
+    readonly stdout: string,
+    readonly stderr: string
+  ) {
+    super(message)
+    this.name = 'CommandError'
+  }
+}
 
 function runCmd(
   cmd: string,
@@ -29,9 +41,7 @@ function runCmd(
         resolve({ stdout, stderr })
       } else {
         reject(
-          new Error(
-            `Command failed: exit ${code}${stderr ? `\n${stderr}` : ''}`
-          )
+          new CommandError(`Command failed: exit ${code}`, code, stdout, stderr)
         )
       }
     })
@@ -77,8 +87,17 @@ export async function isBranchUpToDate(): Promise<{
   }
 }
 
-/**
- */
+function formatFailure(err: unknown): string {
+  if (err instanceof CommandError) {
+    const output = [err.stdout, err.stderr]
+      .map((stream) => stream.trim())
+      .filter(Boolean)
+      .join('\n\n')
+    return output || err.message
+  }
+  return err instanceof Error ? err.message : String(err)
+}
+
 export async function execAsync(
   cmd: string,
   args: string[],
@@ -93,9 +112,8 @@ export async function execAsync(
     s.stop(successMessage)
     return true
   } catch (err) {
-    const message = err instanceof Error ? err.message : String(err)
-    console.error(message)
     s.stop(errorMessage)
+    log.error(formatFailure(err))
     return false
   }
 }
